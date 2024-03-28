@@ -2,17 +2,73 @@
     "name": "@andrao/tsconfig",
     "version": "0.1.0",
     "description": "tsconfig file",
-    "files": [
-        "base.json"
-    ],
+    "homepage": "https://github.com/andrao/tsconfig#readme",
+    "bugs": {
+        "url": "https://github.com/andrao/tsconfig/issues"
+    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/andrao/tsconfig.git"
     },
-    "author": "andrao",
     "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/andrao/tsconfig/issues"
+    "author": "andrao",
+    "files": [
+        "base.json"
+    ],
+    "scripts": {
+        "format": "prettier --check .",
+        "format:fix": "prettier --write .",
+        "prepare": "husky"
     },
-    "homepage": "https://github.com/andrao/tsconfig#readme"
+    "config": {
+        "commitizen": {
+            "path": "./node_modules/cz-conventional-changelog"
+        }
+    },
+    "release": {
+        "branches": [
+            "main",
+            "next",
+            {
+                "name": "beta",
+                "prerelease": true
+            },
+            {
+                "name": "alpha",
+                "prerelease": true
+            }
+        ],
+        "plugins": [
+            "@semantic-release/commit-analyzer",
+            "@semantic-release/release-notes-generator",
+            "@semantic-release/npm",
+            "@semantic-release/github",
+            [
+                "@semantic-release/git",
+                {
+                    "assets": [
+                        "CHANGELOG.md",
+                        "package.json",
+                        "pnpm-lock.yaml"
+                    ],
+                    "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+                }
+            ]
+        ]
+    },
+    "devDependencies": {
+        "@semantic-release/git": "^10.0.1",
+        "commitizen": "^4.3.0",
+        "cz-conventional-changelog": "^3.3.0",
+        "husky": "^9.0.11",
+        "prettier": "^3.2.5",
+        "prettier-plugin-packagejson": "2.4.13",
+        "semantic-release": "^23.0.6",
+        "typescript": "^5.4.3"
+    },
+    "packageManager": "pnpm@8.14.1",
+    "publishConfig": {
+        "access": "public",
+        "provenance": true
+    }
 }
