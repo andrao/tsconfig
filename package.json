@@ -13,7 +13,8 @@
     "license": "MIT",
     "author": "andrao",
     "files": [
-        "base.json"
+        "base.json",
+        "module.json"
     ],
     "scripts": {
         "format": "prettier --check .",
